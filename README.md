@@ -23,7 +23,7 @@ The infrastructure consists of three main components:
 
 --------------------------------------------------------------------------
 
-### PART 1: Provisioning an EC2 Instance for the 1st Web Server
+### Step 1: Provisioning an EC2 Instance for the 1st Web Server
 
  **Access AWS Console**
    - Log into AWS Management Console
@@ -31,7 +31,7 @@ The infrastructure consists of three main components:
 
  **Launch Instance**
    - Click the "Launch Instance" button
-   - Enter "Web Server 1" as instance name
+   - Enter `Web Server 1` as instance name
 
  **Select AMI**
    - Choose Ubuntu Server 24.04 LTS (HVM) from AMI catalog
@@ -47,7 +47,7 @@ The infrastructure consists of three main components:
  **Configure Security Group**
    - Create new security group
    - Add inbound rules:
-     ```
+     ```sh
      Type: Custom TCP
      Port: 8000
      Source: 0.0.0.0/0
@@ -70,6 +70,8 @@ After launching the instance, verify the following:
 - Ports 8000 and 22 are accessible in the security group
 
 ![web server 1 sg](./images/webserver1sg.png)
+
+------------------------------------------------------------
 
 ### Step 2: Connect to the 1st Web Server via the terminal using SSH
 * Open the Terminal on your local computer.
@@ -95,6 +97,8 @@ ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>
 
 ![webserver1 cxn](./images/webserver1cxn.png)
 
+
+------------------------------------------------------------
 
 ### Step 3: Deployment of the 1st Web Server
 * Create and open a file `install.sh` using the command shown below:
@@ -187,6 +191,8 @@ exit
 
 Now let's repeat the process for Web Server 2.
 
+------------------------------------------------------------
+
 ### Step 4: Provision an EC2 Instance for the 2nd Web Server
 
 **Launch Instance**
@@ -231,6 +237,8 @@ After launching the instance, verify the following:
 ![web server 2 ec2](./images/webserver2ec2.png)
 
 
+------------------------------------------------------------
+
 ### Step 5: Connect to the 2nd Web Server via the terminal using SSH
 * Open the terminal on your computer.
 * Run the following command to go to the directory (i.e. Downloads) where the `.pem` key pair file was downloaded.
@@ -251,6 +259,8 @@ ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>
 ```
 
 ![ssh web server 2](./images/webserver2login.png)
+
+------------------------------------------------------------
 
 ### Step 6: Deployment of the 2nd Web Server
 * Create and open a file `install.sh` using the command shown below:
@@ -328,7 +338,9 @@ http://public_ip_address_of_web_server_2:8000
 
 ![http web server 2](./images/webserver2url.png)
 
-### Step 8: Provision an EC2 Instance for the Load Balancer
+------------------------------------------------------------
+
+### Step 7: Provision an EC2 Instance for the Load Balancer
 
 **Launch Instance**
    - On the AWS Management Console, navigate to EC2 Dashboard
@@ -371,8 +383,9 @@ After launching the instance, verify the following:
 
 ![load balancer](./images/loadbalancer.png)
 
+------------------------------------------------------------
 
-### Step 9: Connect to the Load Balancer via the terminal using SSH
+### Step 8: Connect to the Load Balancer via the terminal using SSH
 * Open the terminal on your computer.
 * Run the following command to go to the directory (i.e. Downloads) where the `.pem` key pair file was downloaded.
 
@@ -388,7 +401,9 @@ ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>
 
 ![ssh load balancer](./images/loadbalancerssh.png)
 
-### Step 10: Deploying and Configuring Nginx Load Balancer
+------------------------------------------------------------
+
+### Step 9: Deploying and Configuring Nginx Load Balancer
 * Create and open a file `nginx.sh` using the command shown below:
 
 ```sh
@@ -484,6 +499,18 @@ http://public_ip_address_of_load_balancer:80
 
 _Each time you refresh the page, you will see the web page of **Web Server 1** and **Web Server 2** as shown above._
 
-Terminate the instances
+------------------------------------------------------------
+
+### Step 10: Clean Up Resources
+
+Terminate the instances!
 
 ![Terminate EC2s](./images/terminateec2s.png)
+
+------------------------------------------------------------
+
+Congratulations! You've successfully completed the project! This project showcases the ability to build scalable, automated cloud solutions - a valuable skill set in today's technology landscape. The experience gained here provides a strong foundation for tackling more complex infrastructure challenges and cloud automation projects.
+
+Thanks for reading and following along. I hope you enjoyed it! For more details on similar projects and more, please visit my GitHub portfolio: https://github.com/ceciliacloud
+
+![](./images/congrats.gif)
